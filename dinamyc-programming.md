@@ -8,7 +8,7 @@ es un proceso en el que guardamos valores unicos en un objeto y este evitara que
 
 al memoizar esta funcion los valores unicos seran guardados y en caso de repetirse seran devueltos por la funcion, evitando la recursion y cortando nuestro tiempo por mas de la mitad On
 
-```
+```js
 const func = (n, memo = {}) => {
   // caso base que solo se ejecutara una vez alcanzado el objetivo
   if(n in memo) return memo[n]
@@ -40,7 +40,7 @@ const func = (gridX,gridY,memo = {}) => {
 };
 console.log(func(18,18));
 //2333606220
-```js
+```
 
 
 ## recipe para memoizacion de Alvin
@@ -63,7 +63,7 @@ console.log(func(18,18));
 
 ### pasos ejemplificados, esta funcion verifica si es posible conseguir un numero x de la suma de cualquier valor del arreglo Y
 
-```
+```js
 const func = (x,y, memo = {}) => {
   if(x in memo) return memo[x]
   if(x === 0) return true
@@ -81,4 +81,4 @@ const func = (x,y, memo = {}) => {
 };
 console.log(func(300, [7,14]));
 //false
-```js
+```
