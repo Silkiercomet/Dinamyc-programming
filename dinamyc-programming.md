@@ -17,13 +17,14 @@ const func = (n, memo = {}) => {
   return memo[n]
 };
 console.log(func(50)); 
-```js
 
-*** evaluar un arbol desde el caso base mas profundo
 
-en este otro ejemplo tomaremos 2 parametros para determinar de cuantas formas yendo hacia abajo y hacia la derecha se puede llegar a un espacion especifico de una matriz
+/* evaluar un arbol desde el caso base mas profundo
 
-```
+en este otro ejemplo tomaremos 2 parametros para determinar de cuantas formas yendo hacia abajo y hacia la derecha se puede llegar a un espacion especifico de una matriz */
+
+
+
 const func = (gridX,gridY,memo = {}) => {
   //memoizacion, evaluamos si esta aplica al caso dado 
   let stringNumber = `${gridX},${gridY}`
@@ -39,7 +40,7 @@ const func = (gridX,gridY,memo = {}) => {
 };
 console.log(func(18,18));
 //2333606220
-```js.
+```js
 
 
 ## recipe para memoizacion de Alvin
