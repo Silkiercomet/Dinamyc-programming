@@ -64,6 +64,39 @@ console.log(func(18,18));
 ### pasos ejemplificados, esta funcion verifica si es posible conseguir un numero x de la suma de cualquier valor del arreglo Y
 
 ```js
+const func = (tSum,numArr,memo = {}) => {
+  
+  /* casos base */
+  //si la variable tsum Ya fue evaluada y existe en el objeto memo, no se ejecuta de nuevo en ninguna iteracion
+  if(tSum in memo) return memo[tSum]
+  //si se llega a 0. significa que fue posible una combinacion de numeros de numArr que al se sumados sea tSum
+  if(tSum === 0) return []
+  //en este caso la suma no es posible y se devuelve null
+  if(tSum < 0) return null
+  /* casos base */
+
+  //se recorre el arreglo dado y por cada valor se crea una variable reminder que sera lo que quede de tSum - numArr[num]
+  for(let num of numArr){
+    const reminder = tSum - num
+    //se usa recursion para evaluar los casos base con la variable nueva reminder como tSum
+    const result = func(reminder,numArr, memo)
+    if(result !== null){
+      // si el valor es valido, se crea una entrada en el objeto memo para que no vuelva a ser evaluada
+       memo[tSum] = [...result,num]
+       return memo[tSum]
+    }
+  }
+
+  //si se llega a esta linea, no fue posible encontrar un numero que cumpliera la condicion asi que el tSum se llena con null, no volvera a ser evalaudo y se devuelve
+  memo[tSum] = null
+  return memo[tSum]
+
+};
+console.log(func(300, [7,14]));
+//null
+```
+
+```js
 const func = (x,y, memo = {}) => {
   if(x in memo) return memo[x]
   if(x === 0) return true
