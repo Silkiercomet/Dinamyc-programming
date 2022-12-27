@@ -63,6 +63,7 @@ console.log(func(18,18));
 
 ### pasos ejemplificados, esta funcion verifica si es posible conseguir un numero x de la suma de cualquier valor del arreglo Y
 
+howsum
 ```js
 const func = (tSum,numArr,memo = {}) => {
   
@@ -80,7 +81,7 @@ const func = (tSum,numArr,memo = {}) => {
     const reminder = tSum - num
     //se usa recursion para evaluar los casos base con la variable nueva reminder como tSum
     const result = func(reminder,numArr, memo)
-    if(result !== null){
+      if(result !== null){
       // si el valor es valido, se crea una entrada en el objeto memo para que no vuelva a ser evaluada
        memo[tSum] = [...result,num]
        return memo[tSum]
@@ -95,7 +96,7 @@ const func = (tSum,numArr,memo = {}) => {
 console.log(func(300, [7,14]));
 //null
 ```
-
+cansum
 ```js
 const func = (x,y, memo = {}) => {
   if(x in memo) return memo[x]
@@ -114,4 +115,28 @@ const func = (x,y, memo = {}) => {
 };
 console.log(func(300, [7,14]));
 //false
+```
+bestsum
+```js
+const bestSum = (targetSum, numbers, memo = {}) => {
+  if(targetSum in memo) return memo[targetSum]
+  if(targetSum === 0) return []
+  if(targetSum < 0) return null
+
+  let shortestCombination = null
+
+  for(let num of numbers){
+    const remainder = targetSum - num
+    const remainderCombination = bestSum(remainder, numbers, memo)
+    if(remainderCombination !== null){
+      const combination = [...remainderCombination, num ]
+      if(shortestCombination === null || shortestCombination.length > combination.length){
+        shortestCombination = combination
+      }
+    }
+  }
+  memo[targetSum] = shortestCombination
+  return memo[targetSum]
+};
+console.log(bestSum(100, [1,2,5,25]));
 ```
