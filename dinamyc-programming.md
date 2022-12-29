@@ -140,3 +140,50 @@ const bestSum = (targetSum, numbers, memo = {}) => {
 };
 console.log(bestSum(100, [1,2,5,25]));
 ```
+
+
+"construc the word with the give array"
+```js
+const func = (target,cancon,memo={}) => {
+  if(target in memo) return memo[target]
+  if(target === '')return true
+
+ for(let group of cancon){
+  // en este if se evalua si el grupo se encuentra al principio del target, un string dado a indexOf evaluara si dicho string contiene el valor dado al metodo o delvolvera -1
+   if(target.indexOf(group) === 0){
+      const answer = func(target.slice(group.length),cancon,memo)
+      if(answer){
+        memo[target]=true
+        return memo[target]
+      }
+    }
+  }
+
+ memo[target] = false
+ return memo[target]
+};
+console.log(func('abcdef', ['ab','abc','cd','def','abcd']));
+```
+
+"all the posible ways to construc a target word with the given array"
+```js
+ const allConstruc = (target,cancon,memo={}) => {
+    if(target in memo) return memo[target]
+    if(target === '')return [[]]
+    let result = []
+  
+   for(let word of cancon){
+      if(target.indexOf(word) === 0){
+        const suffix = target.slice(word.length)
+        const allSuffixWays = allConstruc(suffix,cancon,memo)
+        const targetWays = allSuffixWays.map(way => [word, ...way])
+        result.push(...targetWays)
+      }
+    }
+  
+   memo[target] = result
+   return result
+  };
+  
+  console.log(allConstruc('abcdef', ['ab','abc','cd','def','abcd']));
+```
