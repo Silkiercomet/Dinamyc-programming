@@ -187,3 +187,35 @@ console.log(func('abcdef', ['ab','abc','cd','def','abcd']));
   
   console.log(allConstruc('abcdef', ['ab','abc','cd','def','abcd']));
 ```
+
+## tabulacion
+
+este metodo consiste en la creacion de tablas, lo que en js conocemos como arraglos y a partir de ellas trabajar la solucion a partir de los casos base, a diferencia de memoizacion no utiliza recursion y por lo tanto su complejidad es bastanteen base  al tiempo de ejecucion normalmento no es exponencial si no depende del tamaño del numero dado
+
+```js
+const tabulacionFibonacci = (x) => {
+
+  //creamos un arreglo en este caso se realizaran sumas asi que es rellenado con 0
+  let arr = new Array(x+1).fill(0)
+
+  // en la secuencia fibonacci el segundo valor siempre sera 1 asi que lo definimos como caso base para la calculacion de la secuencia
+  arr[1] = 1
+
+  // recorremos el arreglo
+  arr.map((e,i) => {
+    //la secuencia depende de la suma de 2 valores anteriores, si el valor de arr[i+1] o de arr[1+2] existe se sumara el valor que se esta recorriendo 
+    if((i+1) < arr.length){
+      arr[i+1] += e
+    }
+    if((i+2) < arr.length){
+      arr[i+2] += e
+    }
+    return e
+  })
+  //se devovlera el numero de la secuencia solicitado
+  return arr[x]
+};
+console.log(tabulacionFibonacci(50));
+
+//complejidad O(n)
+```
