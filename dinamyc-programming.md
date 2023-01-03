@@ -219,3 +219,41 @@ console.log(tabulacionFibonacci(50));
 
 //complejidad O(n)
 ```
+```js
+const func = (x,y) => {
+  //cremamos nuestra tabla con x+1(1 porque el index por defecto empieza en 0 x siendo la cantidad de filas)
+   
+  //la rellenamos con undefined y luego recorremos el arreglo para recclenar cada entrada con un subarreglo lleno de 0 (si declaramos el subarreglo desde el primer fill este sera rellenado con un solo arreglo con varia referencias a si mismo)
+  let table = new Array(x+1)
+  .fill()
+  .map(e => new Array(y+1).fill(0))
+  //el primer punto del grid sera nuestro punto 1
+  table[1][1]=1
+  //recorremos cada fila y cada columna el problema dice que solo se puede hacia la derecha y hacia abajo
+  for(let i = 0; i <= x; i++){
+    for(let j = 0; j <= y; j++){
+      const current = table[i][j]
+      if(j+1 <= x) table[i][j+1] += current
+      if(i+1 <= y) table[i+1][j] += current
+    }
+  }
+  return table[x][y]
+};
+console.log(func(3,3));
+
+//complejidad O(nm)
+```
+
+### recipe para tabulacion
+
+* visualiza el problema como una tabla
+
+* define el tamaño de la tabla basdo en los inputs
+
+* inicializa la tabla con los valores por default (esto dependera de la naturaleza del resultado buscado)
+
+* planta la primera y obvia respuesta en la tabla, el caso base
+
+* recorre la tabla y ejecuta la logica
+
+* rellena valores siguientes en base al valor actual
